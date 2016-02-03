@@ -223,7 +223,8 @@ namespace 傑偲工程管理系統_品號途程備註更新程式
             }
             for (int i = 0; i < (dgvLoadData.Rows.Count - 1); i++)
             {
-                string compare = CheckNotes(
+                string compare = "";
+                compare = CheckNotes(
                     dgvLoadData.Rows[i].Cells[0].Value.ToString(),
                     dgvLoadData.Rows[i].Cells[1].Value.ToString(),
                     dgvLoadData.Rows[i].Cells[2].Value.ToString(),
