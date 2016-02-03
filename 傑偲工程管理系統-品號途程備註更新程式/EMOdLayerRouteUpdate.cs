@@ -237,6 +237,11 @@ namespace 傑偲工程管理系統_品號途程備註更新程式
                         dgvLoadData.Rows[i].Cells[2].Value.ToString(),
                         dgvLoadData.Rows[i].Cells[4].Value.ToString(),
                         dgvLoadData.Rows[i].Cells[6].Value.ToString());
+                    rtbResult.Text += dgvLoadData.Rows[i].Cells[0].Value.ToString() + "  " +
+                        dgvLoadData.Rows[i].Cells[1].Value.ToString() + "  " +
+                        dgvLoadData.Rows[i].Cells[2].Value.ToString() + "  " +
+                        dgvLoadData.Rows[i].Cells[4].Value.ToString() + "  " +
+                        dgvLoadData.Rows[i].Cells[6].Value.ToString() + "\r\n";
                 }
                 else
                 {
@@ -246,12 +251,12 @@ namespace 傑偲工程管理系統_品號途程備註更新程式
                         dgvLoadData.Rows[i].Cells[2].Value.ToString(),
                         dgvLoadData.Rows[i].Cells[4].Value.ToString(),
                         dgvLoadData.Rows[i].Cells[6].Value.ToString() + "，" + compare);
+                    rtbResult.Text += dgvLoadData.Rows[i].Cells[0].Value.ToString() + "  " +
+                        dgvLoadData.Rows[i].Cells[1].Value.ToString() + "  " +
+                        dgvLoadData.Rows[i].Cells[2].Value.ToString() + "  " +
+                        dgvLoadData.Rows[i].Cells[4].Value.ToString() + "  " +
+                        dgvLoadData.Rows[i].Cells[6].Value.ToString() + "，" + compare + "\r\n";
                 }
-                rtbResult.Text += dgvLoadData.Rows[i].Cells[0].Value.ToString() + "  " +
-                    dgvLoadData.Rows[i].Cells[1].Value.ToString() + "  " +
-                    dgvLoadData.Rows[i].Cells[2].Value.ToString() + "  " +
-                    dgvLoadData.Rows[i].Cells[4].Value.ToString() + "  " +
-                    dgvLoadData.Rows[i].Cells[6].Value.ToString() + "，" + compare + "\r\n";
             }
             lblTotalSuccess.Text = "共 " + total + "筆。";
         }
