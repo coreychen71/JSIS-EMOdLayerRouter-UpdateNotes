@@ -57,6 +57,7 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblPGB);
             this.Name = "PGB";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "更新中...";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -64,8 +65,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblPGB;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        public System.Windows.Forms.ProgressBar progressBar1;
+        public System.Windows.Forms.Label lblPGB;
     }
 }

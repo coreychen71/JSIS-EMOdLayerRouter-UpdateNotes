@@ -17,8 +17,8 @@ namespace 傑偲工程管理系統_品號途程備註更新程式
         {
             InitializeComponent();
             txtFilePath.ReadOnly = true;
-            rtbResult.ReadOnly = true;
             dgvLoadData.ReadOnly = true;
+            dgvResult.ReadOnly = true;
         }
 
         /// <summary>
@@ -221,6 +221,13 @@ namespace 傑偲工程管理系統_品號途程備註更新程式
                 MessageBox.Show("尚未選擇要上傳的Excel檔案！", "提示訊息", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
+            PGB pgb = new PGB();
+            pgb.progressBar1.Minimum = 0;
+            pgb.progressBar1.Maximum = dgvLoadData.Rows.Count - 1;
+            pgb.progressBar1.Value = 0;
+            pgb.progressBar1.Step = 1;
+            pgb.Show();
+            dgvResult.Rows.Clear();
             for (int i = 0; i < (dgvLoadData.Rows.Count - 1); i++)
             {
                 string compare = "";
@@ -237,11 +244,14 @@ namespace 傑偲工程管理系統_品號途程備註更新程式
                         dgvLoadData.Rows[i].Cells[2].Value.ToString(),
                         dgvLoadData.Rows[i].Cells[4].Value.ToString(),
                         dgvLoadData.Rows[i].Cells[6].Value.ToString());
-                    rtbResult.Text += dgvLoadData.Rows[i].Cells[0].Value.ToString() + "  " +
-                        dgvLoadData.Rows[i].Cells[1].Value.ToString() + "  " +
-                        dgvLoadData.Rows[i].Cells[2].Value.ToString() + "  " +
-                        dgvLoadData.Rows[i].Cells[4].Value.ToString() + "  " +
-                        dgvLoadData.Rows[i].Cells[6].Value.ToString() + "\r\n";
+                    dgvResult.Rows.Add(
+                        dgvLoadData.Rows[i].Cells[0].Value.ToString(),
+                        dgvLoadData.Rows[i].Cells[1].Value.ToString(),
+                        dgvLoadData.Rows[i].Cells[2].Value.ToString(),
+                        dgvLoadData.Rows[i].Cells[4].Value.ToString(),
+                        dgvLoadData.Rows[i].Cells[6].Value.ToString());
+                    pgb.progressBar1.Value++;
+                    Application.DoEvents();
                 }
                 else
                 {
@@ -251,13 +261,18 @@ namespace 傑偲工程管理系統_品號途程備註更新程式
                         dgvLoadData.Rows[i].Cells[2].Value.ToString(),
                         dgvLoadData.Rows[i].Cells[4].Value.ToString(),
                         dgvLoadData.Rows[i].Cells[6].Value.ToString() + "，" + compare);
-                    rtbResult.Text += dgvLoadData.Rows[i].Cells[0].Value.ToString() + "  " +
-                        dgvLoadData.Rows[i].Cells[1].Value.ToString() + "  " +
-                        dgvLoadData.Rows[i].Cells[2].Value.ToString() + "  " +
-                        dgvLoadData.Rows[i].Cells[4].Value.ToString() + "  " +
-                        dgvLoadData.Rows[i].Cells[6].Value.ToString() + "，" + compare + "\r\n";
+                    dgvResult.Rows.Add(
+                        dgvLoadData.Rows[i].Cells[0].Value.ToString(),
+                        dgvLoadData.Rows[i].Cells[1].Value.ToString(),
+                        dgvLoadData.Rows[i].Cells[2].Value.ToString(),
+                        dgvLoadData.Rows[i].Cells[4].Value.ToString(),
+                        dgvLoadData.Rows[i].Cells[6].Value.ToString() + "，" + compare);
+                    pgb.progressBar1.Value++;
+                    Application.DoEvents();
                 }
             }
+            pgb.Dispose();
+            MessageBox.Show("已完成上傳更新！", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
             lblTotalSuccess.Text = "共 " + total + "筆。";
         }
     }
